@@ -11,7 +11,10 @@ struct ContentView: View {
     @Binding var document: SwiftUIDocumentDocument
 
     var body: some View {
-        TextEditor(text: $document.text)
+        VStack {
+            TextEditor(text: $document.text1)
+            TextEditor(text: $document.text2)
+        }.padding()
     }
 }
 

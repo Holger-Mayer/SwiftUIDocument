@@ -9,10 +9,12 @@
 		<dict>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.example.plain-text</string>
+				<string>de.h-mayer.demo-doc</string>
 			</array>
 			<key>NSUbiquitousDocumentUserActivityType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).example-document</string>
+            <key>LSTypeIsPackage</key>
+                        <true/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -66,12 +68,12 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.plain-text</string>
+				<string>com.apple.package</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Example Text</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.example.plain-text</string>
+			<string>de.h-mayer.demo-doc</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
