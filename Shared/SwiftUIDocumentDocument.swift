@@ -14,8 +14,8 @@ extension UTType {
     }
 }
 
-struct SwiftUIDocumentDocument: FileDocument {
-    var text: String
+class SwiftUIDocumentDocument: ReferenceFileDocument {
+    @Published var text: String
 
     init(text: String = "Hello, world!") {
         self.text = text
@@ -23,7 +23,7 @@ struct SwiftUIDocumentDocument: FileDocument {
 
     static var readableContentTypes: [UTType] { [.exampleText] }
 
-    init(configuration: ReadConfiguration) throws {
+    required init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
               let string = String(data: data, encoding: .utf8)
         else {
@@ -32,8 +32,12 @@ struct SwiftUIDocumentDocument: FileDocument {
         text = string
     }
     
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
-        return .init(regularFileWithContents: data)
+    func snapshot(contentType: UTType) throws -> String {
+        return self.text
+    }
+
+    func write(snapshot: String, to fileWrapper: inout FileWrapper, contentType: UTType) throws {
+        let data = snapshot.data(using: .utf8)!
+        fileWrapper = FileWrapper(regularFileWithContents: data)
     }
 }
